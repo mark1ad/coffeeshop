@@ -7,9 +7,14 @@ var router = express.Router();
 // Gets
 
 // Show page
-router.get('/', function( req, res){
-  res.send('show shops');
-})
+router.get('/', function(req, res) {
+  Shop.find( {}, function( err, foundShops) {
+        // res.send('message')
+        res.render('shops/index.ejs', {
+          shops: foundShops
+        });
+      })
+  })
 
 // New page
 router.get('/new', function(req,res) {

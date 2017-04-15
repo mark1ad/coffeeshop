@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>New Shop</title>
+    <title>Jitter's Coffee Shops</title>
 
     <!-- Bootstrap stuff -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/header.css">
@@ -15,13 +15,15 @@
   </head>
   <body>
 
-    <% include ../../templates/header.ejs %>
+      <% include ../../templates/header.ejs %>
 
-    <form class="" action="/shops" method="post">
-      <input type="text" name="name" placeholder="Shop Name" >
-      <input type="text" name="information" placeholder="Info">
-      <input type="submit" name="" value="submit">
-    </form>
+    <div class="container">
+      <ul>
+        <% for (var i = 0; i < shops.length; i++ ) { %>
+          <li><%= shops[i].name %></li>
+        <% } %>
+      </ul>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

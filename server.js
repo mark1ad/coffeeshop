@@ -9,6 +9,7 @@ var methodOverride = require('method-override');
 
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.static('public')); 
 
 //********************************
 // Controllers

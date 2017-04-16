@@ -38,6 +38,14 @@ router.post('/', function(req, res) {
     console.log("New shop ", err);
     res.redirect('/shops');
   })
+});
+
+//*****************************
+// Delete shop
+router.delete('/:id', function(req, res) {
+  Shop.findByIdAndRemove( req.params.id, function(err, foundGrapher) {
+    res.redirect('/shops');
+  })
 })
 
 module.exports = router;

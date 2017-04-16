@@ -40,6 +40,10 @@
               </li>
             <% } %>
           </ul>
+          <form class="" action="/shops/<%= shop._id%>?_method=DELETE" method="post">
+            <input type="submit" value="Delete Shop">
+          </form>
+          <a href="#">Edit Shop</a>
 
         </div>
         <div class="col-md-7">

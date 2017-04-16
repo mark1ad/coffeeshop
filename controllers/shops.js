@@ -79,6 +79,19 @@ router.get('/seed/shops', function(req, res) {
 
   Shop.create(newShops, function( err) {
     console.log("SEED: new shops created");
+    // res.redirect('/');
+  });
+
+  var newDrinks = [
+    { name: "mocha", description: "A local favorite"},
+    { name: "coffee", description: "Basic high octane coffee"},
+    { name: "latte", description: "I don't know what this is"},
+    { name: "americano", description: "I don't know what this is either" },
+    { name: "iced mocha", description: "A cold mocha"}
+  ];
+
+  Drink.create(newDrinks, function(err) {
+    console.log("SEED: new drinks created");
     res.redirect('/');
   })
 })

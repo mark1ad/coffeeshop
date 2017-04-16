@@ -2,4 +2,28 @@
   margin-bottom: 0px;
   padding-left: 40px;
   padding-right: 40px;
+  color: #453823;
+  background-color: #C0A172;
 }
+
+.navbar {
+  margin-bottom: 0;
+  background-color: #C0A172;
+  border-width: 1px 0 1px 0;
+  border-color: #453823;
+  border-radius: 0;
+}
+
+a:link, a:visited, a:hover, a:focus, a:active {
+  color: #453823;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #453823;
+}
+/*
+a:link {color: #009900;}
+a:visited {color: #999999;}
+a:hover {color: #333333;}
+a:focus {color: #333333;}
+a:active {color: #009900;}*/

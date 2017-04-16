@@ -1,0 +1,11 @@
+.container-fluid {
+  background-image: url("http://i.imgur.com/YZztpvi.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.splash {
+  text-align: left;
+  color: #C0A172;
+  margin: 50px 50px;
+}

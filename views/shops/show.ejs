@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Civilized Coffee</title>
+
+    <!-- Bootstrap stuff -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+  </head>
+  <body>
+
+    <% include ../../templates/header.ejs %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-5">
+          <p>
+            <h3><%= shop.name %><br/></h3>
+            <%= shop.information %>
+          </p>
+
+          <p>
+            <%= shop.location.street %><br/>
+            <%= shop.location.city %>, <%= shop.location.state %><br>
+          </p>
+
+          <h3>Drinks</h3>
+          <ul>
+            <% var drinks = shop.drinks;
+              drinks.sort( (a,b) => a.toString().localeCompare(b.toString()));
+             for (var i = 0; i <  drinks.length; i++) { %>
+              <li>
+                <%= shop.drinks[i].name %>
+              </li>
+            <% } %>
+          </ul>
+
+        </div>
+        <div class="col-md-7">
+          <img src="<%= shop.img %>" alt="">
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>

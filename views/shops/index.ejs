@@ -19,8 +19,14 @@
 
     <div class="container">
       <ul>
-        <% for (var i = 0; i < shops.length; i++ ) { %>
-          <li><%= shops[i].name %></li>
+        <% shops.sort( (a, b) => a.toString().localeCompare(b.toString()));
+         for (var i = 0; i < shops.length; i++ ) { %>
+          <li>
+            <a href="shops/<%= shops[i]._id%>">
+              <%= shops[i].name %>,
+            </a>
+            <%= shops[i].location.city %>
+          </li>
         <% } %>
       </ul>
     </div>

@@ -50,6 +50,11 @@
               <input class="form-control" id="shopInfo" type="text" name="img" placeholder="URL">
             </div>
 
+            <% for (var i = 0; i < drinks.length; i++) { %>
+              <input id="drink-<%= i %>" type="checkbox" name="drinks" value="<%= drinks[i].name%>">
+              <label for="drink-<%= i %>"><%= drinks[i].name%></label><br>
+            <% } %>
+
             <div class="form-group">
               <input type="submit" name="" value="submit">
               <a href="/shops">Cancel</a>

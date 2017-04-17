@@ -18,7 +18,11 @@ router.get('/', function(req, res) {
 
 // New page
 router.get('/new', function(req,res) {
-  res.render('shops/new.ejs');
+  Drink.find( {} , function(err, foundDrinks) {
+    res.render('shops/new.ejs', {
+      drinks: foundDrinks
+    });
+  })
 })
 
 // Edit page
@@ -48,9 +52,12 @@ router.get('/:id', function(req,res) {
 //*******************************
 // Post
 router.post('/', function(req, res) {
-  Shop.create(req.body, function(err, createdShop) {
-    console.log("New shop ", err);
-    res.redirect('/shops');
+  Drink.find( { name: { $in: req.body.drinks }}, function( err, foundDrinks) {
+    req.body.drinks = foundDrinks;
+    Shop.create(req.body, function(err, createdShop) {
+      console.log("New shop ", err);
+      res.redirect('/shops');
+    })
   })
 });
 

@@ -21,6 +21,16 @@ router.get('/new', function(req,res) {
   res.render('shops/new.ejs');
 })
 
+// Edit page
+router.get('/:id/edit', function( req, res) {
+  Shop.findById( req.params.id, function( err, foundShop) {
+    res.render('shops/edit.ejs', {
+      shop:foundShop
+    })
+  })
+})
+
+
 // Shop information page (show)
 router.get('/:id', function(req,res) {
   Shop.findById( req.params.id, function( err, foundShop) {
@@ -31,6 +41,7 @@ router.get('/:id', function(req,res) {
 })
 
 
+
 //*******************************
 // Post
 router.post('/', function(req, res) {
@@ -39,6 +50,14 @@ router.post('/', function(req, res) {
     res.redirect('/shops');
   })
 });
+
+//*******************************
+// Put
+router.put("/:id", function(req, res) {
+  Shop.findByIdAndUpdate(req.params.id, req.body, function() {
+    res.redirect('/shops/' + req.params.id);
+  })
+})
 
 //*****************************
 // Delete shop

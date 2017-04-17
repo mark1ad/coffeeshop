@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Civilized Coffee</title>
+
+    <!-- Bootstrap stuff -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+  </head>
+  <body>
+
+    <% include ../../templates/header.ejs %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-5">
+          <form class="" action="/shops/<%= shop._id%>?_method=PUT" method="post">
+            <div class="form-group">
+              <label for="shopName">Shop name</label>
+              <input id="shopName" class="form-control" type="text" name="name" value="<%= shop.name %>">
+            </div>
+            <div class="form-group">
+              <label for="shopInfo">Information</label>
+              <input id="shopInfo" class="form-control" type="text" name="information" value="<%= shop.information %>">
+            </div>
+            <div class="form-group">
+              <label for="shopStreet">Street</label>
+              <input id="shopStreet" class="form-control" type="text" name="location.street" value="<%= shop.location.street %>">
+            </div>
+            <div class="form-group">
+              <label for="shopCity">City</label>
+              <input id="shopCity" class="form-control" type="text" name="location.city" value="<%= shop.location.city %>">
+            </div>
+            <div class="form-group">
+              <label for="shopState">State</label>
+              <input id="shopState" class="form-control" type="text" name="location.state" value="<%= shop.location.state %>">
+            </div>
+            <div class="form-group">
+              <label for="shopImg">Image URL</label>
+              <input id="shopImg" class="form-control" type="text" name="img" value="<%= shop.img %>">
+            </div>
+            <div class="form-group">
+              <input type="submit" name="" value="Update">
+              <input type="reset" name="" value="Reset">
+              <a href="/shops/<%= shop.id %>">Cancel</a>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-7">
+          <img src="<%= shop.img %>" alt="">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+
+
+
+  </body>
+</html>

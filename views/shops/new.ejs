@@ -7,7 +7,7 @@
     <!-- Bootstrap stuff -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/header.css">
@@ -17,16 +17,56 @@
 
     <% include ../../templates/header.ejs %>
 
-    <form class="" action="/shops" method="post">
-      <input type="text" name="name" placeholder="Shop Name" >
-      <input type="text" name="information" placeholder="Info">
-      <input type="submit" name="" value="submit">
-    </form>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-5">
+          <form class="" action="/shops" method="post">
+            <div class="form-group">
+              <label for="shopName">Shop Name</label>
+              <input class="form-control" type="text" name="name" value="" placeholder="Shop Name" id="shopName">
+            </div>
+            <div class="form-group">
+              <label for="">Information</label>
+              <input class="form-control" id="shopInfo" type="text" name="information" placeholder="Info">
+            </div>
+
+            <div class="form-group">
+              <label for="">Street</label>
+              <input class="form-control" id="shopInfo" type="text" name="location.street" placeholder="Street">
+            </div>
+
+            <div class="form-group">
+              <label for="">City</label>
+              <input class="form-control" id="shopInfo" type="text" name="location.city" placeholder="City">
+            </div>
+
+            <div class="form-group">
+              <label for="">State</label>
+              <input class="form-control" id="shopInfo" type="text" name="location.state" placeholder="State">
+            </div>
+
+            <div class="form-group">
+              <label for="">Image URL</label>
+              <input class="form-control" id="shopInfo" type="text" name="img" placeholder="URL">
+            </div>
+
+            <div class="form-group">
+              <input type="submit" name="" value="submit">
+              <a href="/shops">Cancel</a>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <img src="http://i.imgur.com/fk3SBOe.jpg" alt="">
+        </div>
+      </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
 
   </body>
 </html>

@@ -18,17 +18,26 @@
       <% include ../../templates/header.ejs %>
 
     <div class="container">
-      <ul>
-        <% shops.sort( (a, b) => a.name.localeCompare(b.name));
-         for (var i = 0; i < shops.length; i++ ) { %>
-          <li>
-            <a href="shops/<%= shops[i]._id%>">
-              <%= shops[i].name %>,
-            </a>
-            <%= shops[i].location.city %>
-          </li>
-        <% } %>
-      </ul>
+      <div class="row">
+        <div class="col-md-5">
+          <ul>
+            <% shops.sort( (a, b) => a.name.localeCompare(b.name));
+             for (var i = 0; i < shops.length; i++ ) { %>
+              <li>
+                <a href="shops/<%= shops[i]._id%>">
+                  <%= shops[i].name %>,
+                </a>
+                <%= shops[i].location.city %>
+              </li>
+            <% } %>
+          </ul>
+
+          <a href="/shops/new">New Shop</a>
+        </div>
+        <div class="col-md-7">
+          <img src="http://i.imgur.com/fk3SBOe.jpg" alt="">
+        </div>
+      </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

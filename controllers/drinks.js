@@ -28,6 +28,14 @@ router.get('/:id', function(req,res) {
   })
 })
 
+//**************************
+// Post drinks
+router.post('/', function(req, res) {
+  Drink.create( req.body, function(err, createdDrink) {
+    res.redirect('/drinks');
+  })
+})
+
 //*****************************
 // Delete drinks
 router.delete('/:id', function(req,res) {

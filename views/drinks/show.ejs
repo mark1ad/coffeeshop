@@ -18,7 +18,7 @@
 
     <% include ../../templates/header.ejs %>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-5">
           <h3><%= drink.name %></h3>
@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-7">
           <% if (drink.img !== "" && drink.img !== undefined) { %>
-            <img src="<% drink.img %>" alt="">
+            <img src="<%= drink.img %>" alt="">
           <% } %>
         </div>
       </div>

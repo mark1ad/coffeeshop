@@ -12,48 +12,25 @@
     <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/header.css">
 
+
   </head>
   <body>
 
     <% include ../../templates/header.ejs %>
 
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-md-5">
-          <p>
-            <h3><%= shop.name %><br/></h3>
-            <%= shop.information %>
-          </p>
-
-          <p>
-            <%= shop.location.street %><br/>
-            <%= shop.location.city %>, <%= shop.location.state %><br>
-          </p>
-
-          <h3>Drinks</h3>
-          <ul>
-            <% var drinks = shop.drinks;
-              drinks.sort( (a,b) => a.toString().localeCompare(b.toString()));
-             for (var i = 0; i <  drinks.length; i++) { %>
-              <li>
-                <a href="/drinks/<%= shop.drinks[i]._id%>">
-                  <%= shop.drinks[i].name %>
-                </a>
-              </li>
-            <% } %>
-          </ul>
-          <form class="" action="/shops/<%= shop._id%>?_method=DELETE" method="post">
-            <input type="submit" value="Delete Shop">
-            <a href="<%= shop._id%>/edit">Edit Shop</a>
-          </form>
-
+          <h3><%= drink.name %></h3>
+          <p><%= drink.description %></p>
         </div>
         <div class="col-md-7">
-          <img src="<%= shop.img %>" alt="">
+          <% if (drink.img !== "" && drink.img !== undefined) { %>
+            <img src="<% drink.img %>" alt="">
+          <% } %>
         </div>
       </div>
     </div>
-
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

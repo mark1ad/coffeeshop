@@ -12,6 +12,15 @@ router.get('/', function(req,res) {
       drinks: foundDrinks
     });
   })
+});
+
+// Drink information page (show)
+router.get('/:id', function(req,res) {
+  Drink.findById( req.params.id, function( err, foundDrink) {
+    res.render('drinks/show.ejs', {
+      drink: foundDrink
+    })
+  })
 })
 
 module.exports = router;

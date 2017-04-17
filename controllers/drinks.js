@@ -14,6 +14,11 @@ router.get('/', function(req,res) {
   })
 });
 
+// New page
+router.get('/new', function(req, res){
+  res.render('drinks/new.ejs');
+})
+
 // Drink information page (show)
 router.get('/:id', function(req,res) {
   Drink.findById( req.params.id, function( err, foundDrink) {

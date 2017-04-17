@@ -24,8 +24,11 @@ router.get('/new', function(req,res) {
 // Edit page
 router.get('/:id/edit', function( req, res) {
   Shop.findById( req.params.id, function( err, foundShop) {
-    res.render('shops/edit.ejs', {
-      shop:foundShop
+    Drink.find( {}, function( err, foundDrinks) {
+      res.render('shops/edit.ejs', {
+        shop:foundShop,
+        drinks: foundDrinks
+      })
     })
   })
 })
@@ -54,8 +57,11 @@ router.post('/', function(req, res) {
 //*******************************
 // Put
 router.put("/:id", function(req, res) {
-  Shop.findByIdAndUpdate(req.params.id, req.body, function() {
-    res.redirect('/shops/' + req.params.id);
+  Drink.find( { name: { $in : req.body.drinks }}, function(err, foundDrinks){
+    req.body.drinks = foundDrinks;
+    Shop.findByIdAndUpdate(req.params.id, req.body, function( err) {
+      res.redirect('/shops/' + req.params.id);
+    })
   })
 })
 
@@ -77,10 +83,6 @@ router.get('/seed/shops', function(req, res) {
     { name: "Shop 1", information: 'This is shop 1',
       location: { street: "oak", city: "Fort Collins", state: "CO"},
       img: "http://i.imgur.com/3ijGEGo.jpg",
-      drinks: [
-        { name: "mocha", description: "A local favorite"},
-        { name: "coffee", description: "plain old coffee"},
-      ],
     },
     { name: 'Shop 2', information: 'This is shop 2',
       location: { string: "Kennedy Dr", city: "Northglenn", state: "CO"},

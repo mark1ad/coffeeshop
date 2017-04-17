@@ -45,11 +45,18 @@
               <label for="shopImg">Image URL</label>
               <input id="shopImg" class="form-control" type="text" name="img" value="<%= shop.img %>">
             </div>
+
+            <% for (var i = 0; i < drinks.length; i++) { %>
+              <input id="drink-<%= i %>" type="checkbox" name="drinks" value="<%= drinks[i].name%>">
+              <label for="drink-<%= i %>"><%= drinks[i].name%></label><br>
+            <% } %>
+
             <div class="form-group">
               <input type="submit" name="" value="Update">
               <input type="reset" name="" value="Reset">
               <a href="/shops/<%= shop.id %>">Cancel</a>
             </div>
+
           </form>
         </div>
 

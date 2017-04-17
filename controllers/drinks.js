@@ -23,4 +23,12 @@ router.get('/:id', function(req,res) {
   })
 })
 
+//*****************************
+// Delete drinks
+router.delete('/:id', function(req,res) {
+  Drink.findByIdAndRemove( req.params.id, function( err, foundDrink) {
+    res.redirect('/drinks');
+  })
+})
+
 module.exports = router;

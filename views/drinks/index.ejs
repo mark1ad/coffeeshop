@@ -17,11 +17,12 @@
 
     <% include ../../templates/header.ejs %>
 
-    <h3>Our Drinks</h3>
 
-    <div class="container">
+
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-5">
+          <h3>Our Drinks</h3>
           <ul>
             <% drinks.sort( (a, b) => a.name.localeCompare(b.name));
             for (var i = 0; i < drinks.length; i++ ) { %>
@@ -32,6 +33,10 @@
               </li>
             <% } %>
           </ul>
+        </div>
+
+        <div class="col-md-7 imgDiv">
+          <img src="http://i.imgur.com/p4GSo3l.jpg" alt="">
         </div>
       </div>
     </div>

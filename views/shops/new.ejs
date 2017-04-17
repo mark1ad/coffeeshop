@@ -56,11 +56,12 @@
             for (var i = 0; i < drinks.length; i++) { %>
               <input id="drink-<%= i %>" type="checkbox" name="drinks" value="<%= drinks[i].name%>">
               <label for="drink-<%= i %>"><%= drinks[i].name%></label><br>
-            <% } %>
+              <% } %>
 
-            <div class="form-group">
-              <input type="submit" name="" value="Build Shop">
-              <a href="/shops">Cancel</a>
+              <div class="form-group">
+                <input type="submit" name="" value="Build Shop">
+                <a href="/shops">Cancel</a>
+              </div>
             </form>
           </div>
         </div>
@@ -69,7 +70,6 @@
           <img src="http://i.imgur.com/fk3SBOe.jpg" alt="">
         </div>
       </div>
-    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

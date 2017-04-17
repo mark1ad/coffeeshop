@@ -22,24 +22,13 @@
           <h3>Make A New Drink</h3>
 
           <form class="" action="/drinks" method="post">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" name="name" placeholder="Name" class="form-control">
-            </div>
 
-            <div class="form-group">
-              <label>Description</label>
-              <input type="text" name="description" placeholder="Description" class="form-control">
-            </div>
-
-            <div class="form-group">
-              <label>Image URL</label>
-              <input type="text" name="img" placeholder="Image" class="form-control">
-            </div>
+            <% include ../../templates/drink_form_fields.ejs %>
 
             <div class="form-group">
               <input type="submit" name="" value="Make Drink">
-              <a href="/drinks">Cancel</a>
+              <input type="reset" name="" value="Reset">
+              <a href="/drinks/<%= drink._id">Cancel</a>
             </div>
           </form>
         </div>

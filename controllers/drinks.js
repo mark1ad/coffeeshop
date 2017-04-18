@@ -51,9 +51,24 @@ router.post('/', function(req, res) {
 
 //***************************
 // Put
+
+function updateDrinkInShops(shops, drinkID, drink) {
+  if (shops.length > 0) {
+    var curShop = shops.pop();
+    curShop.drinks.id(drinkID).remove();
+    curShop.drinks.push(drink);
+    curShop.save(function(err, data) {
+      updateDrinkInShops(shops, drinkID, drink);
+    })
+  }
+}
+
 router.put("/:id", function(req, res) {
-  Drink.findByIdAndUpdate(req.params.id, req.body, function(err) {
-    res.redirect('/drinks/' + req.params.id);
+  Drink.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, foundDrink) {
+    Shop.find({'drinks._id':req.params.id}, function(err, foundShops) {
+      updateDrinkInShops(foundShops, req.params.id, foundDrink);
+      res.redirect('/drinks/' + req.params.id);
+    })
   })
 })
 
@@ -63,7 +78,6 @@ router.put("/:id", function(req, res) {
 function removeDrinkFromShop(shops, drinkID) {
   if (shops.length > 0) {
     var curShop = shops.pop();
-    console.log("Remove drink from " + curShop.name);
     curShop.drinks.id(drinkID).remove();
     curShop.save(function(err, data) {
       removeDrinkFromShop(shops, drinkID);

@@ -20,7 +20,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-5">
-          <ul>
+          <h3>Our Shops</h3>
+
+          <ul class="list-unstyled">
             <% shops.sort( (a, b) => a.name.localeCompare(b.name));
              for (var i = 0; i < shops.length; i++ ) { %>
               <li>
@@ -32,7 +34,7 @@
             <% } %>
           </ul>
 
-          <a href="/shops/new">New Shop</a>
+          <a class="btn btn-default" href="/shops/new">Open A New Shop</a>
         </div>
         <div class="col-md-7">
           <img src="http://i.imgur.com/fk3SBOe.jpg" alt="">

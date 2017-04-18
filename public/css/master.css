@@ -1,3 +1,7 @@
 img {
   width: 100%;
 }
+
+.btn-default {
+  border-color: #C0A172;
+}

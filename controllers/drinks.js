@@ -1,5 +1,6 @@
 var express = require('express');
 var Drink = require('../models/drinks.js');
+var Shop = require('../models/shops.js');
 var router = express.Router();
 
 //***************************
@@ -58,9 +59,24 @@ router.put("/:id", function(req, res) {
 
 //*****************************
 // Delete drinks
+
+function removeDrinkFromShop(shops, drinkID) {
+  if (shops.length > 0) {
+    var curShop = shops.pop();
+    console.log("Remove drink from " + curShop.name);
+    curShop.drinks.id(drinkID).remove();
+    curShop.save(function(err, data) {
+      removeDrinkFromShop(shops, drinkID);
+    })
+  }
+}
+
 router.delete('/:id', function(req,res) {
   Drink.findByIdAndRemove( req.params.id, function( err, foundDrink) {
-    res.redirect('/drinks');
+    Shop.find({'drinks._id':req.params.id}, function(err, foundShops) {
+      removeDrinkFromShop(foundShops, req.params.id);
+      res.redirect('/drinks');
+    })
   })
 })
 

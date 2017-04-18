@@ -10,11 +10,13 @@ var shopSchema = mongoose.Schema({
 });
 
 var sortByName = function(drinkObjects) {
-  return drinkObjects.sort(function(a,b) {
-    if (a.name < b.name) {return -1; }
-    if (a.name > b.name) {return 1; }
+  return drinkObjects.slice().sort(function(a,b) {
+    var nameA = a.name.toLowerCase();
+    var nameB = b.name.toLowerCase();
+    if (nameA < nameB) {return -1; }
+    if (nameA > nameB) {return 1; }
     return 0;
-  })
+  });
 }
 
 shopSchema.virtual('drinksAlphabetical').get(function() {

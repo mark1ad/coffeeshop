@@ -32,12 +32,11 @@
 
           <h3>Drinks</h3>
           <ul>
-            <% var drinks = shop.drinks;
-              drinks.sort( (a,b) => a.toString().localeCompare(b.toString()));
+            <% var drinks = shop.drinksAlphabetical;
              for (var i = 0; i <  drinks.length; i++) { %>
               <li>
                 <a href="/drinks/<%= shop.drinks[i]._id%>">
-                  <%= shop.drinks[i].name %>
+                  <%= drinks[i].name %>
                 </a>
               </li>
             <% } %>

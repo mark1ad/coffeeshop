@@ -49,8 +49,9 @@
             </div>
 
             <% drinks.sort( (a,b) => a.name.localeCompare(b.name));
-            for (var i = 0; i < drinks.length; i++) { %>
-              <input id="drink-<%= i %>" type="checkbox" name="drinks" value="<%= drinks[i].name%>">
+            for (var i = 0; i < drinks.length; i++) {
+              var checked = shop.drinks.id(drinks[i]._id) === null ? "" : "checked"  %>
+              <input id="drink-<%= i %>" type="checkbox" name="drinks" value="<%= drinks[i].name%>" <%= checked %> >
               <label for="drink-<%= i %>"><%= drinks[i].name%></label><br>
             <% } %>
 

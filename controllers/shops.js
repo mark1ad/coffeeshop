@@ -64,9 +64,12 @@ router.post('/', function(req, res) {
 //*******************************
 // Put
 router.put("/:id", function(req, res) {
+  console.log("put " + req.params.id);
   Drink.find( { name: { $in : req.body.drinks }}, function(err, foundDrinks){
+    console.log("foundDrinks " + foundDrinks);
     req.body.drinks = foundDrinks;
     Shop.findByIdAndUpdate(req.params.id, req.body, function( err) {
+      console.log("err " + err);
       res.redirect('/shops/' + req.params.id);
     })
   })

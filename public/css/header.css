@@ -1,3 +1,8 @@
+/*Contains css for header and footer templates.*/
+
+/**************************************/
+/*Header*/
+
 .jumbotron {
   margin-bottom: 0px;
   padding-left: 40px;
@@ -27,3 +32,16 @@ a:visited {color: #999999;}
 a:hover {color: #333333;}
 a:focus {color: #333333;}
 a:active {color: #009900;}*/
+
+/****************************/
+ /* Footer */
+
+
+.footer {
+  color: #453823;
+  background-color: #C0A172;
+  padding: 10px 10px;
+  font-size: smaller;
+  border-top: 1px solid #453823;
+  border-bottom: 1px solid #453823;
+}

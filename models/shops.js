@@ -23,6 +23,26 @@ shopSchema.virtual('drinksAlphabetical').get(function() {
   return sortByName(this.drinks);
 })
 
+var buildMapURL = function(location) {
+  if (location.street === "" || location.city === "" || location.state === "") {
+    return "";
+  }
+
+  return encodeURI("https://maps.googleapis.com/maps/api/staticmap?center="
+  + location.street + '+'
+  + location.city + ','
+  + location.state +
+   "&zoom=16&size=600x300&maptype=roadmap&markers=color:blue|"
+   + location.street + '+'
+   + location.city + ','
+    + location.state +
+     "&key=AIzaSyAefy5rezYdyzFbF2qQ7zzHsS-iRTiPBsg");
+}
+
+shopSchema.virtual('mapURL').get(function() {
+  return buildMapURL(this.location);
+})
+
 
 var shop = mongoose.model('Shop', shopSchema);
 

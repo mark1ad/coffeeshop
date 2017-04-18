@@ -46,6 +46,16 @@
             <a class="btn btn-default" href="<%= shop._id%>/edit">Edit Shop</a>
           </form>
 
+          <h3>Location</h3>
+          <p>
+            <%= shop.location.street %><br/>
+            <%= shop.location.city %>, <%= shop.location.state %><br>
+          </p>
+
+          <% var mapURL = shop.mapURL;
+            if (mapURL !== "") { %>
+          <img src="<%=mapURL%>" alt="">
+          <% } %>
         </div>
         <div class="col-md-7">
           <img src="<%= shop.img %>" alt="">

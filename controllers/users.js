@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
   });
 })
 
+// Sign Out
 router.get('/signout', function(req, res) {
   req.session.destroy(function(err) {
     res.redirect('/');

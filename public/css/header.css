@@ -19,23 +19,27 @@
   border-radius: 0;
 }
 
+.navbar-default {
+  color: #453823;
+
+}
+
 .navbar-right {
   padding-right: 15px;
 }
 
-a:link, a:visited, a:hover, a:focus, a:active {
+a:link, a:visited, a:hover, a:focus, a:active  {
+  color: #453823;
+
+}
+
+.navbar-default .navbar-nav > li > a {
   color: #453823;
 }
 
-.navbar-default .navbar-nav > li > a:hover {
+.navbar-default .navbar-text {
   color: #453823;
 }
-/*
-a:link {color: #009900;}
-a:visited {color: #999999;}
-a:hover {color: #333333;}
-a:focus {color: #333333;}
-a:active {color: #009900;}*/
 
 /****************************/
  /* Footer */

@@ -33,7 +33,9 @@ app.use('/users', usersController);
 //*********************************
 // Get home page
 app.get('/', function(req, res) {
-  res.render('index.ejs');
+  res.render('index.ejs', {
+    currentUser: req.session.username
+  });
 })
 
 //***********************************

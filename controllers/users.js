@@ -9,7 +9,7 @@ var router = express.Router();
 // Sign-in page
 router.get('/', function(req, res) {
   res.render('users/signin.ejs', {
-    errorMsg: ''
+    errorMsg: '',
   });
 })
 
@@ -24,7 +24,7 @@ router.get('/signout', function(req, res) {
 router.post('/', function(req, res) {
   if (req.body.username === '' || req.body.password === '') {
     res.render( 'users/signin.ejs', {
-      errorMsg: "Username and password are required."
+      errorMsg: "Username and password are required.",
     });
   }
   else {
@@ -32,11 +32,12 @@ router.post('/', function(req, res) {
       if (foundUser.username === req.body.username
           && bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.usertype = foundUser.type;
+        req.session.username = foundUser.username;
         res.redirect('/');
       }
       else {
         res.render( 'users/signin.ejs', {
-          errorMsg: "User not found."
+          errorMsg: "User not found.",
         });
       }
     })

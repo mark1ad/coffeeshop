@@ -12,7 +12,8 @@ router.get('/', function(req,res) {
     var canEdit = (req.session.usertype === "corp");
     res.render('drinks/index.ejs', {
       drinks: foundDrinks,
-      canEdit: canEdit
+      canEdit: canEdit,
+      currentUser: req.session.username
     });
   })
 });
@@ -20,8 +21,9 @@ router.get('/', function(req,res) {
 // New page
 router.get('/new', function(req, res){
   res.render('drinks/new.ejs',{
-    drink: {} // send empty drink object for new page to make form partial work.
+    drink: {}, // send empty drink object for new page to make form partial work.
         // Edit page will send a real object
+        currentUser: req.session.username
   });
 })
 
@@ -31,7 +33,8 @@ router.get('/:id', function(req,res) {
     var canEdit = (req.session.usertype === "corp");
     res.render('drinks/show.ejs', {
       drink: foundDrink,
-      canEdit: canEdit
+      canEdit: canEdit,
+      currentUser: req.session.username
     })
   })
 })
@@ -40,7 +43,8 @@ router.get('/:id', function(req,res) {
 router.get('/:id/edit', function( req, res) {
   Drink.findById( req.params.id, function(err, foundDrink) {
     res.render("drinks/edit.ejs", {
-      drink: foundDrink
+      drink: foundDrink,
+      currentUser: req.session.username
     })
   })
 })

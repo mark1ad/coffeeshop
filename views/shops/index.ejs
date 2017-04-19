@@ -34,7 +34,9 @@
             <% } %>
           </ul>
 
-          <a class="btn btn-default" href="/shops/new">Open A New Shop</a>
+          <% if (usertype === "corp" ) { %>
+            <a class="btn btn-default" href="/shops/new">Open A New Shop</a>
+          <% } %>
         </div>
         <div class="col-md-7">
           <img src="http://i.imgur.com/fk3SBOe.jpg" alt="">

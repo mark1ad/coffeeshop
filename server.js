@@ -19,6 +19,10 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(function(req,res,next) { // handles response variable for user session
+  res.locals.currentUser = req.session.username;
+  next();
+})
 
 //********************************
 // Controllers
@@ -33,9 +37,7 @@ app.use('/users', usersController);
 //*********************************
 // Get home page
 app.get('/', function(req, res) {
-  res.render('index.ejs', {
-    currentUser: req.session.username
-  });
+  res.render('index.ejs');
 })
 
 //***********************************

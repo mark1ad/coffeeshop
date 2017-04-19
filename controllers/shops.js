@@ -12,8 +12,7 @@ router.get('/', function(req, res) {
     var canEdit = (req.session.usertype === "corp");
     res.render('shops/index.ejs', {
       shops: foundShops,
-      canEdit: canEdit,
-      currentUser: req.session.username
+      canEdit: canEdit
     });
   })
 })
@@ -23,8 +22,7 @@ router.get('/', function(req, res) {
 router.get('/new', function(req,res) {
   Drink.find( {} , function(err, foundDrinks) {
     res.render('shops/new.ejs', {
-      drinks: foundDrinks,
-      currentUser: req.session.username
+      drinks: foundDrinks
     });
   })
 })
@@ -35,8 +33,7 @@ router.get('/:id/edit', function( req, res) {
     Drink.find( {}, function( err, foundDrinks) {
       res.render('shops/edit.ejs', {
         shop:foundShop,
-        drinks: foundDrinks,
-        currentUser: req.session.username
+        drinks: foundDrinks
       })
     })
   })
@@ -49,8 +46,7 @@ router.get('/:id', function(req,res) {
     var canEdit = (req.session.usertype === "corp");
     res.render('shops/show.ejs', {
       shop: foundShop,
-      canEdit: canEdit,
-      currentUser: req.session.username
+      canEdit: canEdit
     });
   })
 })

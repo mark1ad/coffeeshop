@@ -10,7 +10,8 @@ var router = express.Router();
 router.get('/', function(req, res) {
   Shop.find( {}, function( err, foundShops) {
     res.render('shops/index.ejs', {
-      shops: foundShops
+      shops: foundShops,
+      usertype: req.session.usertype
     });
   })
 })

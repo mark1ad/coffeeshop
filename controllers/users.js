@@ -7,13 +7,39 @@ var router = express.Router();
 
 // Sign-in page
 router.get('/', function(req, res) {
-  res.render('users/signin.ejs');
+  res.render('users/signin.ejs', {
+    errorMsg: ''
+  });
+})
+
+router.get('/signout', function(req, res) {
+  req.session.destroy(function(err) {
+    res.redirect('/');
+  })
 })
 
 //***********************
 // Post
 router.post('/', function(req, res) {
-  res.redirect('/');
+  if (req.body.username === '' || req.body.password === '') {
+    res.render( 'users/signin.ejs', {
+      errorMsg: "Username and password are required."
+    });
+  }
+  else {
+    User.findOne( {username: req.body.username }, function(err, foundUser) {
+      if (foundUser.username === req.body.username
+          && foundUser.password === req.body.password) {
+        req.session.usertype = foundUser.type;
+        res.redirect('/');
+      }
+      else {
+        res.render( 'users/signin.ejs', {
+          errorMsg: "User not found."
+        });
+      }
+    })
+  }
 })
 
 module.exports = router;

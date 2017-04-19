@@ -3,6 +3,7 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var session = require('express-session');
 
 var port = process.env.PORT || 3000;
 var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/coffeeshop';
@@ -13,6 +14,11 @@ var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/coffeeshop'
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static('public'));
+app.use(session({
+  secret: "ohsosecret",
+  resave: false,
+  saveUninitialized: false
+}));
 
 //********************************
 // Controllers

@@ -21,7 +21,6 @@
 
 .navbar-default {
   color: #453823;
-
 }
 
 .navbar-right {
@@ -35,6 +34,15 @@ a:link, a:visited, a:hover, a:focus, a:active  {
 
 .navbar-default .navbar-nav > li > a {
   color: #453823;
+}
+
+.navbar-default .navbar-nav > .active > a {
+  background-color: #472f01;
+  color: #C0A172;
+}
+.navbar-default .navbar-nav > .active > a:hover {
+  background-color: #472f01;
+  color: #C0A172;
 }
 
 .navbar-default .navbar-text {

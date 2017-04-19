@@ -58,7 +58,7 @@
                 <input class="btn btn-default" type="submit" value="Delete Shop">
               <% } %>
 
-              <% if (currentUser === shop.manager) { %>
+              <% if (currentUser === shop.manager || usertype === "corp") { %>
                 <a class="btn btn-default" href="<%= shop._id%>/edit">Edit Shop</a>
               <% } %>
             </form>

@@ -41,10 +41,6 @@
               </li>
             <% } %>
           </ul>
-          <form class="" action="/shops/<%= shop._id%>?_method=DELETE" method="post">
-            <input class="btn btn-default" type="submit" value="Delete Shop">
-            <a class="btn btn-default" href="<%= shop._id%>/edit">Edit Shop</a>
-          </form>
 
           <h3>Location</h3>
           <p>
@@ -52,10 +48,22 @@
             <%= shop.location.city %>, <%= shop.location.state %><br>
           </p>
 
+          <p>
           <% var mapURL = shop.mapURL;
             if (mapURL !== "") { %>
           <img src="<%=mapURL%>" alt="">
           <% } %>
+        </p>
+
+        <% if (canEdit) { %>
+          <p>
+            <form class="" action="/shops/<%= shop._id%>?_method=DELETE" method="post">
+              <input class="btn btn-default" type="submit" value="Delete Shop">
+              <a class="btn btn-default" href="<%= shop._id%>/edit">Edit Shop</a>
+            </form>
+          </p>
+          <% } %>
+
         </div>
         <div class="col-md-7">
           <img src="<%= shop.img %>" alt="">

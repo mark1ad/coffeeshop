@@ -24,12 +24,14 @@
           <h3><%= drink.name %></h3>
           <p><%= drink.description %></p>
 
-          <form class="" action="/drinks/<%= drink._id%>?_method=Delete" method="post">
-            <div class="form-group">
-              <input class="btn btn-default" type="submit" value="Delete Drink">
-              <a class="btn btn-default" href="<%= drink._id%>/edit">Edit Drink</a>
-            </div>
-          </form>
+          <% if (canEdit) { %>
+            <form class="" action="/drinks/<%= drink._id%>?_method=Delete" method="post">
+              <div class="form-group">
+                <input class="btn btn-default" type="submit" value="Delete Drink">
+                <a class="btn btn-default" href="<%= drink._id%>/edit">Edit Drink</a>
+              </div>
+            </form>
+            <% } %>
         </div>
         <div class="col-md-7">
           <% if (drink.img !== "" && drink.img !== undefined) { %>

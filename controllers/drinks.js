@@ -9,8 +9,10 @@ var router = express.Router();
 // Drinks index page
 router.get('/', function(req,res) {
   Drink.find({}, function(err, foundDrinks) {
+    var canEdit = (req.session.usertype === "corp");
     res.render('drinks/index.ejs', {
-      drinks: foundDrinks
+      drinks: foundDrinks,
+      canEdit: canEdit
     });
   })
 });
@@ -26,8 +28,10 @@ router.get('/new', function(req, res){
 // Drink information page (show)
 router.get('/:id', function(req,res) {
   Drink.findById( req.params.id, function( err, foundDrink) {
+    var canEdit = (req.session.usertype === "corp");
     res.render('drinks/show.ejs', {
-      drink: foundDrink
+      drink: foundDrink,
+      canEdit: canEdit
     })
   })
 })

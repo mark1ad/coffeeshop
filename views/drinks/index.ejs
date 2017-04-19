@@ -34,7 +34,9 @@
             <% } %>
           </ul>
 
-          <a class="btn btn-default" href="/drinks/new">Make A New Drink</a>
+          <% if (canEdit) { %>
+            <a class="btn btn-default" href="/drinks/new">Make A New Drink</a>
+          <% } %>
         </div>
 
         <div class="col-md-7 imgDiv">

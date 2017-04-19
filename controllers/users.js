@@ -1,4 +1,5 @@
 var express = require('express');
+var bcrypt = require('bcrypt');
 var User = require('../models/users.js');
 var router = express.Router();
 
@@ -29,7 +30,7 @@ router.post('/', function(req, res) {
   else {
     User.findOne( {username: req.body.username }, function(err, foundUser) {
       if (foundUser.username === req.body.username
-          && foundUser.password === req.body.password) {
+          && bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.usertype = foundUser.type;
         res.redirect('/');
       }
@@ -47,9 +48,10 @@ module.exports = router;
 //***********************
 // seed user db
 router.get('/seed/users', function( req,res) {
+  var hashedPassword = bcrypt.hashSync( "Mark", bcrypt.genSaltSync(10));
   var corp = {
     username: "Mark",
-    password: "Mark",
+    password: hashedPassword,
     type: "corp"
   };
 

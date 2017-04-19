@@ -24,7 +24,7 @@
           <h3><%= drink.name %></h3>
           <p><%= drink.description %></p>
 
-          <% if (canEdit) { %>
+          <% if (usertype === "corp") { %>
             <form class="" action="/drinks/<%= drink._id%>?_method=Delete" method="post">
               <div class="form-group">
                 <input class="btn btn-default" type="submit" value="Delete Drink">

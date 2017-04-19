@@ -9,10 +9,8 @@ var router = express.Router();
 // Drinks index page
 router.get('/', function(req,res) {
   Drink.find({}, function(err, foundDrinks) {
-    var canEdit = (req.session.usertype === "corp");
     res.render('drinks/index.ejs', {
-      drinks: foundDrinks,
-      canEdit: canEdit
+      drinks: foundDrinks
     });
   })
 });

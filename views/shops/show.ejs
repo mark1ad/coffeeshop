@@ -51,11 +51,16 @@
           <% } %>
         </p>
 
-        <% if (canEdit) { %>
+        <% if (usertype === "corp" || currentUser === shop.manager) { %>
           <p>
             <form class="" action="/shops/<%= shop._id%>?_method=DELETE" method="post">
-              <input class="btn btn-default" type="submit" value="Delete Shop">
-              <a class="btn btn-default" href="<%= shop._id%>/edit">Edit Shop</a>
+              <% if (usertype === "corp") { %>
+                <input class="btn btn-default" type="submit" value="Delete Shop">
+              <% } %>
+
+              <% if (currentUser === shop.manager) { %>
+                <a class="btn btn-default" href="<%= shop._id%>/edit">Edit Shop</a>
+              <% } %>
             </form>
           </p>
           <% } %>

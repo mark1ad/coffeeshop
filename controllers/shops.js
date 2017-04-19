@@ -11,10 +11,8 @@ var router = express.Router();
 // Shop index page
 router.get('/', function(req, res) {
   Shop.find( {}, function( err, foundShops) {
-    var canEdit = (req.session.usertype === "corp");
     res.render('shops/index.ejs', {
-      shops: foundShops,
-      canEdit: canEdit
+      shops: foundShops
     });
   })
 })
@@ -45,10 +43,8 @@ router.get('/:id/edit', function( req, res) {
 // Shop information page (show)
 router.get('/:id', function(req,res) {
   Shop.findById( req.params.id, function( err, foundShop) {
-    var canEdit = (req.session.usertype === "corp");
     res.render('shops/show.ejs', {
-      shop: foundShop,
-      canEdit: canEdit
+      shop: foundShop
     });
   })
 })

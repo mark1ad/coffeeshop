@@ -21,6 +21,8 @@ var shopsController = require('./controllers/shops.js');
 app.use('/shops', shopsController);
 var drinksController = require('./controllers/drinks.js');
 app.use('/drinks', drinksController);
+var usersController = require('./controllers/users.js');
+app.use('/users', usersController);
 
 //*********************************
 // Get home page

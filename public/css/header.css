@@ -19,6 +19,10 @@
   border-radius: 0;
 }
 
+.navbar-right {
+  padding-right: 15px;
+}
+
 a:link, a:visited, a:hover, a:focus, a:active {
   color: #453823;
 }

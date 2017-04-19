@@ -21,6 +21,7 @@ app.use(session({
 }));
 app.use(function(req,res,next) { // handles response variable for user session
   res.locals.currentUser = req.session.username;
+  res.locals.userType = req.session.userType;
   next();
 })
 

@@ -29,7 +29,8 @@ router.post('/', function(req, res) {
   }
   else {
     User.findOne( {username: req.body.username }, function(err, foundUser) {
-      if (foundUser.username === req.body.username
+      if (foundUser !== null
+          && foundUser.username === req.body.username
           && bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.usertype = foundUser.type;
         req.session.username = foundUser.username;

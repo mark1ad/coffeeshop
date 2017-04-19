@@ -3,6 +3,7 @@ var Drink = require('./drinks.js');
 
 var shopSchema = mongoose.Schema({
   name: { type: String, required: true, unique: true },
+  manager: { type: String, required: true },
   information: { type: String, required: true },
   location: { street: String, city: String, state: String },
   drinks: [ Drink.schema ],

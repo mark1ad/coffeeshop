@@ -1,6 +1,8 @@
 var express = require('express');
+var bcrypt = require('bcrypt');
 var Shop = require('../models/shops.js');
 var Drink = require('../models/drinks.js');
+var User = require('../models/users.js');
 var router = express.Router();
 
 //****************************
@@ -56,12 +58,31 @@ router.get('/:id', function(req,res) {
 //*******************************
 // Post
 router.post('/', function(req, res) {
-  Drink.find( { name: { $in: req.body.drinks }}, function( err, foundDrinks) {
-    req.body.drinks = foundDrinks;
-    Shop.create(req.body, function(err, createdShop) {
-      res.redirect('/shops');
+  if (req.body.username === '' || req.body.password === '') {
+    res.render( 'shops/new.ejs', {
+      errorMsg: "Manager and password are required.",
+    });
+  }
+  else {
+    var hashedPassword = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+    var user = {
+      username: req.body.manager,
+      password: hashedPassword,
+      type: "manager"
+    }
+
+    User.create(user, function(err, createdUser) {
+      Drink.find( { name: { $in: req.body.drinks }}, function( err, foundDrinks) {
+        delete req.body.password;
+        req.body.drinks = foundDrinks;
+        Shop.create(req.body, function(err, createdShop) {
+          res.redirect('/shops');
+        })
+      })
     })
-  })
+  }
+
+
 });
 
 //*******************************
@@ -90,19 +111,27 @@ module.exports = router;
 // seed db with shops
 router.get('/seed/shops', function(req, res) {
   var newShops = [
-    { name: "Shop 1", information: 'This is shop 1',
-      location: { street: "oak", city: "Fort Collins", state: "CO"},
+    { name: "A Civilized Fort Collins",
+      manager: "Steve",
+      information: 'Our first location. Near the CSU Campus',
+      location: { street: "318 W Laurel", city: "Fort Collins", state: "CO"},
       img: "http://i.imgur.com/3ijGEGo.jpg",
     },
-    { name: 'Shop 2', information: 'This is shop 2',
-      location: { string: "Kennedy Dr", city: "Northglenn", state: "CO"},
+    { name: 'Shop 2',
+      manager: 'Bob',
+      information: 'This is shop 2',
+      location: { string: "901 W 104th St", city: "Northglenn", state: "CO"},
       img: "http://i.imgur.com/nUaPiXl.jpg"
     },
-    { name: 'Shpo 3', information: 'This is shop 3',
+    { name: 'Shpo 3',
+      manager: "Susan",
+      information: 'This is shop 3',
       location: { street: "Main", city: "Windsor", state: "CO"},
       img: "http://i.imgur.com/xuTKX2k.jpg"
     },
-    { name: 'Shop 4', information: 'This is shop 4',
+    { name: 'Shop 4',
+      manager: "Ralph",
+      information: 'This is shop 4',
       location: {street: "1st Ave", city: "Boulder", state: "CO"},
       img: "http://i.imgur.com/vHhA3Hn.jpg"
     },

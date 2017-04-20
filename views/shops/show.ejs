@@ -45,7 +45,9 @@
               for (var i = 0; i < events.length; i++) { %>
                 <li>
                   <%= events[i].formattedDate %> -
-                  <%= events[i].name %>
+                  <a href="/events/<%=events[i]._id%>">
+                    <%= events[i].name %>
+                  </a>
                 </li>
               <% } %>
             </ul>

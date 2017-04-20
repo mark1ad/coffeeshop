@@ -36,7 +36,7 @@
             <% } %>
           </ul>
 
-          <% if (currentUser) {%>
+          <% if (usertype === "manager") {%>
             <a class="btn btn-default" href="/events/new">Schedule A New Event</a>
           <% } %>
         </div>

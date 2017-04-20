@@ -27,7 +27,7 @@
           </p>
 
           <h3>Drinks</h3>
-          <ul>
+          <ul class="list-unstyled">
             <% var drinks = shop.drinksAlphabetical;
              for (var i = 0; i <  drinks.length; i++) { %>
               <li>
@@ -37,6 +37,20 @@
               </li>
             <% } %>
           </ul>
+
+          <% if (shop.events.length > 0) { %>
+            <h3>Events</h3>
+            <ul class="list-unstyled">
+              <% var events = shop.sortedEvents;
+              for (var i = 0; i < events.length; i++) { %>
+                <li>
+                  <%= events[i].date.getMonth() + 1 %>/<%= events[i].date.getDate() %> -
+                  <%= events[i].name %>
+                </li>
+              <% } %>
+            </ul>
+
+          <% } %>
 
           <h3>Location</h3>
           <p>

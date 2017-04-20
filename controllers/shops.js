@@ -171,11 +171,6 @@ router.get('/seed/shops', function(req, res) {
           addDrinksToShops( createdShops, createdDrinks,
             [[2,4], [1,0], [ 1,3,0], [1,2,4]] );
           res.redirect('/');
-
-          // createdShops[0].drinks.push(createdDrinks[0]);
-          // createdShops[0].save(function(err) {
-          //   console.log('pushed drink on shop ' + err);
-          // })
         })
       })
     })

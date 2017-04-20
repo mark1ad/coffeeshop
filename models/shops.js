@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Drink = require('./drinks.js');
+var Event = require('./events.js');
 
 var shopSchema = mongoose.Schema({
   name: { type: String, required: true, unique: true },
@@ -7,6 +8,7 @@ var shopSchema = mongoose.Schema({
   information: { type: String, required: true },
   location: { street: String, city: String, state: String },
   drinks: [ Drink.schema ],
+  events: [ Event.schema ],
   img: String
 });
 
@@ -42,6 +44,18 @@ var buildMapURL = function(location) {
 
 shopSchema.virtual('mapURL').get(function() {
   return buildMapURL(this.location);
+})
+
+var sortEventsByDate = function(eventObjects) {
+  return eventObjects.slice().sort( function(a,b) {
+    if (a.date < b.date) return -1;
+    if (a.date > b.date) return 1;
+    return 0;
+  })
+}
+
+shopSchema.virtual('sortedEvents').get(function() {
+  return sortEventsByDate(this.events);
 })
 
 

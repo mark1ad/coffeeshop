@@ -1,5 +1,6 @@
 var express = require('express');
 var Event = require('../models/events.js');
+var Shop = require('../models/shops.js');
 var router = express.Router();
 
 //**************************
@@ -24,8 +25,14 @@ router.get('/new', function( req, res) {
 //**************************
 // Post event
 router.post('/', function(req,res) {
-  Event.create(req.body, function(err, createdEvent) {
-    res.redirect('/events');
+  Shop.findOne( { manager: req.session.username }, function(err, foundShop) {
+    req.body.shop = foundShop.name;
+    Event.create(req.body, function(err, createdEvent) {
+      foundShop.events.push(createdEvent);
+      foundShop.save(function(err, data) {
+        res.redirect('/events');
+      })
+    })
   })
 })
 

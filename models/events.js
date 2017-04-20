@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var eventSchema = mongoose.Schema({
+  shop: { type: String, require: true },
   name: { type: String, required: true},
   description: { type: String, required: true },
   date: { type: Date, require: true}

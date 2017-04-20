@@ -37,6 +37,15 @@ router.get('/:id', function(req,res) {
   })
 })
 
+// Edit page
+router.get('/:id/edit', function(req, res) {
+  Event.findById( req.params.id, function(err, foundEvent) {
+    res.render('events/edit.ejs', {
+      event: foundEvent
+    })
+  })
+})
+
 //**************************
 // Post event
 router.post('/', function(req,res) {
@@ -52,10 +61,26 @@ router.post('/', function(req,res) {
 })
 
 //************************
+// Delete Event
 router.delete("/:id", function(req,res) {
   Event.findByIdAndRemove( req.params.id, function(err, foundEvent) {
     Shop.findOne({name: foundEvent.shop}, function(err, foundShop) {
       foundShop.events.id(req.params.id).remove();
+      foundShop.save(function(err, data) {
+        res.redirect('/events');
+      })
+    })
+  })
+})
+
+//************************
+// Put
+
+router.put("/:id", function(req, res) {
+  Event.findByIdAndUpdate( req.params.id, req.body, {new: true}, function( err, foundEvent) {
+    Shop.findOne({name: foundEvent.shop}, function( err, foundShop) {
+      foundShop.events.id(req.params.id).remove();
+      foundShop.events.push(foundEvent);
       foundShop.save(function(err, data) {
         res.redirect('/events');
       })

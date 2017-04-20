@@ -7,10 +7,11 @@
     <!-- Bootstrap stuff -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/header.css">
+
 
   </head>
   <body>
@@ -20,39 +21,35 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-5">
-          <h3><%= event.formattedDate %>, <%= event.name%></h3>
+          <h3>Edit Event</h3>
 
-          <p>
-            <a href="/shops/<%=shop._id%>"><%= event.shop %></a>
-          </p>
+          <form class="" action="/events/<%= event._id%>?_method=PUT" method="post">
 
-          <p><%= event.description%></p>
+            <% include ../../templates/event_form_fields.ejs %>
 
-          <% if (currentUser === shop.manager) { %>
+            <div class="form-group">
+              <input class="btn btn-default" type="submit" name="" value="Update">
+              <input class="btn btn-default" type="reset" name="" value="Reset">
+              <a class="btn btn-default" href="/events/<%= event._id %>">Cancel</a>
+            </div>
 
-            <form class="" action="/events/<%=event._id%>?_method=DELETE" method="post">
-              <div class="form-group">
-                <input class="btn btn-default" type="submit" value="Delete Event">
-
-                <a class="btn btn-default" href="<%= event._id%>/edit">Edit Event</a>
-              </div>
-            </form>
-
-          <% } %>
+          </form>
         </div>
 
         <div class="col-md-7">
           <img src="http://i.imgur.com/EaCfFBt.jpg" alt="">
         </div>
+
       </div>
     </div>
 
     <% include ../../templates/footer.ejs %>
 
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
 
   </body>
 </html>

@@ -18,39 +18,13 @@
     <% include ../../templates/header.ejs %>
 
 
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-5">
-          <h3>Our Drinks</h3>
-          <ul class="list-unstyled">
-            <% drinks.sort( (a, b) => a.name.localeCompare(b.name));
-            for (var i = 0; i < drinks.length; i++ ) { %>
-              <li>
-                <a href="drinks/<%= drinks[i]._id%>">
-                  <%= drinks[i].name %>
-                </a>
-              </li>
-            <% } %>
-          </ul>
-
-          <% if (currentUser) { %>
-            <a class="btn btn-default" href="/drinks/new">Make A New Drink</a>
-          <% } %>
-        </div>
-
-        <div class="col-md-7 imgDiv">
-          <img src="http://i.imgur.com/p4GSo3l.jpg" alt="">
-        </div>
-      </div>
-    </div>
-
     <% include ../../templates/footer.ejs %>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="bootstrap/js/bootstrap.min.js"></script>
+
 
   </body>
 </html>

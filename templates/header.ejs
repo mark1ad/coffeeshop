@@ -8,16 +8,38 @@
 
     <nav class="navbar navbar-default">
       <ul class="nav navbar-nav">
-        <li id="navHome" class="active navLink">
+        <li id="navHome" class="navLink
+        <% if (currentPath === '/') { %>
+           active
+          <% } %>
+        ">
           <a href="/">
             Home
           </a>
         </li>
-        <li id="navShops" class="navLink">
+
+        <li id="navShops" class="navLink
+        <% if (currentPath.startsWith('/shops')) { %>
+           active
+          <% } %>
+        ">
           <a href="/shops">Our Shops</a>
         </li>
-        <li id="navDrinks" class="navLink">
+
+        <li id="navDrinks" class="navLink
+        <% if (currentPath.startsWith("/drinks")) { %>
+           active
+          <% } %>
+        ">
           <a href="/drinks">Our Drinks</a>
+        </li>
+
+        <li id="navEvents" class="navLink
+        <% if (currentPath.startsWith('/events')) { %>
+           active
+          <% } %>
+          ">
+          <a href="/events">Events</a>
         </li>
       </ul>
 
@@ -26,7 +48,11 @@
           <li><p class="navbar-text">Signed in as <%= currentUser %></p></li>
           <li class="navLink"><a href="/users/signout">Sign Out</a></li>
         <% } else { %>
-          <li id="navSignIn" class="navLink">
+          <li id="navSignIn" class="navLink
+          <% if (currentPath === '/users') { %>
+             active
+            <% } %>
+          ">
             <a href="/users">Sign In</a>
           </li>
         <% } %>

@@ -20,10 +20,12 @@ app.use(session({
   saveUninitialized: false
 }));
 app.use(function(req,res,next) { // handles response variable for user session
+  console.log(req.url);
   res.locals.currentUser = req.session.username;
   res.locals.usertype = req.session.usertype;
+  res.locals.currentPath = req.url;
   next();
-})
+});
 
 //********************************
 // Controllers
@@ -34,6 +36,8 @@ var drinksController = require('./controllers/drinks.js');
 app.use('/drinks', drinksController);
 var usersController = require('./controllers/users.js');
 app.use('/users', usersController);
+var eventsController = require('./controllers/events.js');
+app.use('/events', eventsController);
 
 //*********************************
 // Get home page

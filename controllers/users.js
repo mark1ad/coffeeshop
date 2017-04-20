@@ -50,16 +50,45 @@ module.exports = router;
 
 //***********************
 // seed user db
-router.get('/seed/users', function( req,res) {
-  var hashedPassword = bcrypt.hashSync( "Mark", bcrypt.genSaltSync(10));
-  var corp = {
-    username: "Mark",
-    password: hashedPassword,
-    type: "corp"
-  };
 
-  User.create(corp, function(err) {
-    console.log("SEED: user created");
+function makeUsers( newUsers) {
+  if (newUsers.length > 0) {
+    var curUser = newUsers.pop();
+    var hashedPassword = bcrypt.hashSync( curUser[0], bcrypt.genSaltSync(10));
+    var corp = {
+      username: curUser[0],
+      password: hashedPassword,
+      type: curUser[1]
+    };
+
+    User.create(corp, function(err) {
+      makeUsers(newUsers);
+    })
+  }
+}
+
+router.get('/seed/users', function( req,res) {
+  User.remove({}, function(err) {
+    var newUsers = [
+      [ "Mark", "corp"],
+      [ 'Steve', 'manager'],
+      [ 'Bob', 'manager'],
+      [ 'Susan', 'manager'],
+      [ 'Harry', 'manager']
+    ];
+
+    makeUsers( newUsers);
     res.redirect('/');
+
   })
+  // var hashedPassword = bcrypt.hashSync( "Mark", bcrypt.genSaltSync(10));
+  // var corp = {
+  //   username: "Mark",
+  //   password: hashedPassword,
+  //   type: "corp"
+  // };
+  //
+  // User.create(corp, function(err) {
+  //   console.log("SEED: user created");
+  // })
 })

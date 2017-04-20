@@ -9,3 +9,11 @@ main .container-fluid {
   color: #C0A172;
   margin: 50px 50px;
 }
+
+.outline {
+  text-shadow:
+    -1px -1px 0 #453823,
+    1px -1px 0 #453823,
+    -1px 1px 0 #453823,
+    1px 1px 0 #453823;
+}

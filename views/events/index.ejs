@@ -17,6 +17,35 @@
 
     <% include ../../templates/header.ejs %>
 
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-5">
+          <h3>Events</h3>
+
+          <ul class="list-unstyled">
+            <% events.sort( function( a, b) {
+              if (a.date < b.date) return -1;
+              if (a.date > b.date) return 1;
+              return 0;
+            });
+            for (var i = 0;i < events.length; i++) { %>
+              <li>
+              <%= events[i].date.getMonth() + 1 %>/<%= events[i].date.getDate()%> -
+              <%= events[i].name %>
+            </li>
+            <% } %>
+          </ul>
+
+          <% if (currentUser) {%>
+            <a class="btn btn-default" href="/events/new">Schedule A New Event</a>
+          <% } %>
+        </div>
+
+        <div class="col-md-7 imgDiv">
+          <img src="http://i.imgur.com/EaCfFBt.jpg" alt="">
+        </div>
+      </div>
+    </div>
 
     <% include ../../templates/footer.ejs %>
 

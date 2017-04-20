@@ -20,7 +20,6 @@ app.use(session({
   saveUninitialized: false
 }));
 app.use(function(req,res,next) { // handles response variable for user session
-  console.log(req.url);
   res.locals.currentUser = req.session.username;
   res.locals.usertype = req.session.usertype;
   res.locals.currentPath = req.url;

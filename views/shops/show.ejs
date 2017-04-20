@@ -44,7 +44,7 @@
               <% var events = shop.sortedEvents;
               for (var i = 0; i < events.length; i++) { %>
                 <li>
-                  <%= events[i].date.getMonth() + 1 %>/<%= events[i].date.getDate() %> -
+                  <%= events[i].formattedDate %> -
                   <%= events[i].name %>
                 </li>
               <% } %>

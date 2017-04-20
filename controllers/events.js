@@ -25,6 +25,18 @@ router.get('/new', function( req, res) {
   })
 })
 
+// Event information page
+router.get('/:id', function(req,res) {
+  Event.findById( req.params.id, function(err, foundEvent) {
+    Shop.findOne( {name: foundEvent.shop}, function(err, foundShop) {
+      res.render('events/show.ejs', {
+        event: foundEvent,
+        shop: foundShop
+      })
+    })
+  })
+})
+
 //**************************
 // Post event
 router.post('/', function(req,res) {

@@ -30,8 +30,10 @@
             });
             for (var i = 0;i < events.length; i++) { %>
               <li>
-              <%= events[i].date.getMonth() + 1 %>/<%= events[i].date.getDate()%> -
-              <%= events[i].name %>,
+              <%= events[i].formattedDate %> -
+              <a href="events/<%= events[i]._id%>">
+                <%= events[i].name %>,
+              </a>
               <a href="/shops/<%= shops.find(a => a.name === events[i].shop)._id%>">
                 <%= events[i].shop %>
               </a>

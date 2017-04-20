@@ -8,9 +8,12 @@ var router = express.Router();
 
 // Events index page
 router.get('/', function(req, res) {
-  Event.find({}, function(err, foundEvents) {
-    res.render('events/index.ejs', {
-      events: foundEvents
+  Shop.find({}, function(err, foundShops) {
+    Event.find({}, function(err, foundEvents) {
+      res.render('events/index.ejs', {
+        events: foundEvents,
+        shops: foundShops
+      });
     });
   })
 });

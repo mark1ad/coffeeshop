@@ -51,5 +51,17 @@ router.post('/', function(req,res) {
   })
 })
 
+//************************
+router.delete("/:id", function(req,res) {
+  Event.findByIdAndRemove( req.params.id, function(err, foundEvent) {
+    Shop.findOne({name: foundEvent.shop}, function(err, foundShop) {
+      foundShop.events.id(req.params.id).remove();
+      foundShop.save(function(err, data) {
+        res.redirect('/events');
+      })
+    })
+  })
+})
+
 
 module.exports = router;

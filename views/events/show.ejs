@@ -27,6 +27,16 @@
           </p>
 
           <p><%= event.description%></p>
+
+          <% if (currentUser === shop.manager) { %>
+
+            <form class="" action="/events/<%=event._id%>?_method=DELETE" method="post">
+              <div class="form-group">
+                <input type="submit" value="Delete Event">
+              </div>
+            </form>
+
+          <% } %>
         </div>
 
         <div class="col-md-7">
